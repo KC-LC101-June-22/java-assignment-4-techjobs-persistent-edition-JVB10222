@@ -1,12 +1,23 @@
 package org.launchcode.techjobs.persistent.models;
 
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.data.annotation.ReadOnlyProperty;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
-
+@MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Id
+    @GeneratedValue
     private int id;
-
+    @Size(min = 3, max=250, message = "Name must be between 3 and 250 characters")
+    @NotNull
     private String name;
 
     public int getId() {
